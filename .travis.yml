@@ -2,10 +2,10 @@ sudo: false
 language: node_js
 node_js:
   - 14.17.0
-cache: npm
+cache: yarn
 branches:
   only:
-    - master # build master branch only
+    - main # build master branch only
 script:
   - hexo generate # generate static files
 deploy:
@@ -14,5 +14,5 @@ deploy:
   github-token: $GH_TOKEN
   keep-history: true
   on:
-    branch: master
+    branch: main
   local-dir: public
