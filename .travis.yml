@@ -8,6 +8,7 @@ branches:
     - main # build master branch only
 script:
   - hexo generate # generate static files
+  # 注意这个main
 deploy:
   provider: pages
   skip-cleanup: true
