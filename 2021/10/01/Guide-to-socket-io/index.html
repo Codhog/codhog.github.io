@@ -1,0 +1,1129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="A beginners&#39; guide of implementing co-operative editing document using React and socket.io, javascript">
+    <meta name="description" content="A Full-Stack Developer at Foxconn Technology">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>A beginners&#39; guide of implementing co-operative editing document using React and socket.io | Peter Chen</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Peter Chen</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-folder" style="zoom: 0.6;"></i>
+      
+      <span>Projects</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com">
+          
+          <i class="fas fa-arrow-right" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Baidu</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Peter Chen</div>
+        <div class="logo-desc">
+            
+            A Full-Stack Developer at Foxconn Technology
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-folder"></i>
+			
+			Projects
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://www.baidu.com " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-arrow-right" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Baidu</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Codhog" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Codhog" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">A beginners&#39; guide of implementing co-operative editing document using React and socket.io</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-10-01
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="A-beginners’-guide-of-implementing-co-operative-editing-document-using-React-and-socket-io"><a href="#A-beginners’-guide-of-implementing-co-operative-editing-document-using-React-and-socket-io" class="headerlink" title="A beginners’ guide of implementing co-operative editing document using React and socket.io"></a>A beginners’ guide of implementing co-operative editing document using React and socket.io</h1><h4 id="1-Tech-Stack"><a href="#1-Tech-Stack" class="headerlink" title="1. Tech-Stack:"></a>1. Tech-Stack:</h4><ul>
+<li>React (create-react-app)</li>
+<li>Koa </li>
+<li>Socket.io</li>
+<li>nodemon for HMR on server side (optional)</li>
+</ul>
+<p>(You need Node and npm/yarn installed, as well as some basic webpack knowledge)</p>
+<h4 id="2-Abstraction"><a href="#2-Abstraction" class="headerlink" title="2. Abstraction"></a>2. Abstraction</h4><p>This App is a simple implementation of co-operative editing document meant for demonstrating how client-ui can work with server through a constant connection called websocket.</p>
+<p>The client-UI is based of Flavio Copes(<a target="_blank" rel="noopener" href="https://flaviocopes.com/">https://flaviocopes.com/</a>) React Excel tutorial,</p>
+<p><a target="_blank" rel="noopener" href="https://flaviocopes.com/tutorial-react-spreadsheet/">https://flaviocopes.com/tutorial-react-spreadsheet/</a></p>
+<p>while this guide emphasize on how socket.io works to establish constant connection</p>
+<p>between multiple clients and server.</p>
+<h4 id="3-Folders-Structure"><a href="#3-Folders-Structure" class="headerlink" title="3. Folders Structure"></a>3. Folders Structure</h4><p>**Client Side **(react create-react-app) Client’s name folder</p>
+<p>​    src</p>
+<p>​        Table</p>
+<p>​            -&gt; Table.js</p>
+<p>​        Cell</p>
+<p>​            -&gt; Cell.js</p>
+<p>​        Row</p>
+<p>​            -&gt; Row.js</p>
+<p>​    App.js</p>
+<p>​    index.js</p>
+<p><strong>Server Side</strong> (Koa2) Server(API) name folder</p>
+<p>server.js</p>
+<h4 id="4-The-Client-side-gt-Capturing-events-and-define-behaviors-in-each-event’s-callback"><a href="#4-The-Client-side-gt-Capturing-events-and-define-behaviors-in-each-event’s-callback" class="headerlink" title="4. The Client side =&gt; Capturing events and define behaviors in each event’s callback"></a>4. The Client side =&gt; Capturing events and define behaviors in each event’s callback</h4><p>The code before Introducing Formula is an Excel table with editing function without Math(all the code above Introducing Formula), and we will try to make it <strong>real-time</strong> like Google Docs. When it’s done, your code should be similar to <a target="_blank" rel="noopener" href="https://flaviocopes.com/tutorial-react-spreadsheet/">https://flaviocopes.com/tutorial-react-spreadsheet/</a> Before <strong>Introducing Formula</strong>. </p>
+<p>In order to make real-time co-operative edit work, we need to add some events in componentDidMount .</p>
+<p>We will add these events:</p>
+<ul>
+<li>sheet’s Content changing  </li>
+<li>sheet editing (start and stop)</li>
+</ul>
+<ol>
+<li>Content Changed Event</li>
+</ol>
+<p>When the change of table’s content is changed we will emit an event to notify the server, and the other client.</p>
+<p>We define the function sendMessage anywhere below the “sonstructor” method and above the render() in Table.js</p>
+<p>and call “sendMessage”  in “handleChangedCell” as this function handle the total table data and apply to each cell.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">handleChangedCell = <span class="function">(<span class="params">&#123; x, y &#125;, value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> modifiedData = <span class="built_in">Object</span>.assign(&#123;&#125;, <span class="built_in">this</span>.state.data);</span><br><span class="line">  <span class="keyword">if</span> (!modifiedData[y]) modifiedData[y] = &#123;&#125;;</span><br><span class="line">  modifiedData[y][x] = value;</span><br><span class="line">  <span class="built_in">this</span>.setState(&#123; <span class="attr">data</span>: modifiedData &#125;);</span><br><span class="line">  <span class="built_in">this</span>.sendMessage(modifiedData, <span class="built_in">this</span>.props.displayName)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sendMessage = <span class="function">(<span class="params">sdata, sendername</span>) =&gt;</span> &#123;</span><br><span class="line">  socket.emit(<span class="string">&quot;skchange&quot;</span>, &#123; </span><br><span class="line">    <span class="attr">data</span>: sdata,</span><br><span class="line">    <span class="attr">sender</span>: sendername</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+
+<p>By doing this we send the table data along with sender’s name to backend, and backend will respond and transmit a new singal(‘sknew’).</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">&#x27;skchange&#x27;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> ([username, id] <span class="keyword">of</span> users.entries()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (username !== data.sender) &#123;</span><br><span class="line">            io.to(id).emit(<span class="string">&#x27;sknew&#x27;</span>, data)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>“  socket.broadcast.emit “ can also brocasting the data to everyone except the sender.</p>
+<p>The Table.js has a state “data” which is essentially the data of each column and row stored in one object.</p>
+<p>When one client changed data, we want another client to have the same data.</p>
+<p>So we just Transmit the whole data, through server and to another client.</p>
+<p> <strong>Tips!</strong>:we will do this in componentDidmount()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  socket.on(&quot;sknew&quot;, (sdata) =&gt; &#123;</span><br><span class="line">    console.log(&#x27;sknew接收&#x27;,sdata);</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      data: sdata.data,</span><br><span class="line">      sender: sdata.sender</span><br><span class="line">    &#125;)</span><br><span class="line">    this.forceUpdate()</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>with the server code (shown above)</p>
+<p>we shall have the app working like this</p>
+<p><img src="/2021/10/01/Guide-to-socket-io/2.gif" alt="1"></p>
+<p>Now we have the real-time text, let’s make others know who is editing.</p>
+<p><img src="/2021/10/01/Guide-to-socket-io/3.gif" alt="3"></p>
+<p>To do that, we need to send out socket signals of “Start Editing” and “End Editing” at “double-clicked” “onBlur” respectively.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">doubleClicked = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Prevent click and double click to conflict</span></span><br><span class="line">  <span class="built_in">clearTimeout</span>(<span class="built_in">this</span>.timer);</span><br><span class="line">  <span class="built_in">this</span>.prevent = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">this</span>.emitUnselectAllEvent();</span><br><span class="line">  <span class="built_in">this</span>.setState(&#123; <span class="attr">editing</span>: <span class="literal">true</span>, <span class="attr">selected</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">  <span class="comment">// Unselect all the otfher cells and set the current</span></span><br><span class="line">  <span class="comment">// Cell state to `selected` &amp; `editing`</span></span><br><span class="line">  <span class="comment">// 双击格子后 发送信号</span></span><br><span class="line">  socket.emit(<span class="string">&#x27;skediting&#x27;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;dataName&#x27;</span>: <span class="built_in">this</span>.props.displayName,</span><br><span class="line">    <span class="string">&#x27;dataCoor&#x27;</span>: [<span class="built_in">this</span>.props.x, <span class="built_in">this</span>.props.y]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Above is how we send the  “Start Editing”, and we need to code the receiving signal for this.</p>
+<p>Since we want this to happen after the DOM is mounted, we code the behavior on receiving events in componentDidmount()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">socket.on(&#x27;skeditcoming&#x27;, (data) =&gt; &#123;</span><br><span class="line">  console.log(&#x27;接受修改信号&#x27;, data);</span><br><span class="line">  // 取消其他选中框</span><br><span class="line">  this.emitUnselectAllEvent();</span><br><span class="line">  this.setState(&#123;</span><br><span class="line">    typingName: data.dataName,</span><br><span class="line">    currentXy: [...data.dataCoor],</span><br><span class="line">    editing: true</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>we transfer the data including: the guy’s name who is editing, which cell is editing, and the state for editing.</p>
+<p>After we finished the “Start Editing” signal, let’s get to the “End Editing”</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onBlur = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  socket.emit(<span class="string">&#x27;editend&#x27;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;xycoor&#x27;</span>: [<span class="built_in">this</span>.props.x, <span class="built_in">this</span>.props.y],</span><br><span class="line">    <span class="string">&#x27;newValue&#x27;</span>: e.target.value</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="built_in">this</span>.hasNewValue(e.target.value);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>And the receiving part.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">&#x27;editendcoming&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data, <span class="string">&#x27;editendcoming+_+_+&#x27;</span>);</span><br><span class="line">  <span class="built_in">this</span>.props.onChangedValue(</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">x</span>: data.xycoor[<span class="number">0</span>],</span><br><span class="line">      <span class="attr">y</span>: data.xycoor[<span class="number">1</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    data.newValue</span><br><span class="line">  );</span><br><span class="line">  <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">    <span class="attr">typingName</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">currentXy</span>: [],</span><br><span class="line">    <span class="comment">// value:data.newValue,</span></span><br><span class="line">    <span class="attr">editing</span>: <span class="literal">false</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>SUM UP</strong>:  Every event we register will have two different names come back and forth,</p>
+<p>If we emit “newmessage” to server, after server received it, it need another name to send to client “newMessageComing”</p>
+<p><img src="/2021/10/01/Guide-to-socket-io/4.png"></p>
+<h4 id="5-Transmitting-data-through-Socket-io"><a href="#5-Transmitting-data-through-Socket-io" class="headerlink" title="5. Transmitting data through Socket.io"></a>5. Transmitting data through Socket.io</h4><p>The server side is simplified to demonstrate how socket.io works with http server and client-UI with no touch on database.</p>
+<p>First, we create the instance of websocket using Koa.  </p>
+<p>Note that Koa requires app.callback() as parameter</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>).createServer(app.callback())</span><br><span class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">&#x27;socket.io&#x27;</span>)(server)</span><br></pre></td></tr></table></figure>
+
+<p> which is unlike express</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&#x27;http&#x27;).Server(app);</span><br><span class="line">var io = require(&#x27;socket.io&#x27;)(http);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Next, in my implementation I used a map collection to record the current logged in users.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> users = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">io.on(<span class="string">&quot;connection&quot;</span>, <span class="function">(<span class="params">socket</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;ws on connect&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    socket.on(<span class="string">&#x27;getID&#x27;</span>, <span class="function"><span class="params">name</span>=&gt;</span>&#123;</span><br><span class="line">        users.set(name, socket.id) </span><br><span class="line">        <span class="built_in">console</span>.log(users, <span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)  </span><br></pre></td></tr></table></figure>
+
+<p>I personally chose a customized signal to record each user’s information (username, socketId, etc..)</p>
+<p>In client side, where login event will trigger this function.  Emitting the “getID” signal while server-side store and handle the users’ information.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">handleLogin = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  socket.emit(<span class="string">&quot;getID&quot;</span>, <span class="built_in">this</span>.username.current.value);</span><br><span class="line">  <span class="built_in">this</span>.setState(&#123;</span><br><span class="line">    <span class="attr">displayTable</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Some controversies here:</strong></p>
+<p>The other way around is transmitting information in the callback function of on(“connect”),</p>
+<p>which means transmitting data over the first/short TCP “touching base” request, seems unstable?  But it’s doable and is in the official docs.</p>
+<p>But I found it unstable with the <strong>sequence</strong> of setting other state in client side or with other ajax action which required the use of Async decorator to achieve desired code firing order.</p>
+<p>Let’s also set a customized disconnect event for client, so the global users map object can now update according to users’ login/logout action with unique socketID.</p>
+<p>users map delete the socketID of disconnected users using map.prototype.delete(), easy right?</p>
+<p>Put this block of code inside the scope of  io.on(‘connection’){} as this is a customized event.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">&#x27;disconnect&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;socket disconnected&#x27;</span>, socket.id);</span><br><span class="line">  <span class="keyword">for</span> ([username, id] <span class="keyword">of</span> users.entries())&#123;</span><br><span class="line">      <span class="keyword">if</span>(id === socket.id)&#123;</span><br><span class="line">          users.delete(username)</span><br><span class="line">          </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;map after disconnected&#x27;</span>, users);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Tips:</strong></p>
+<p>In fact, all of the customized events need to be put in the scope of </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">io.on(&quot;connection&quot;, (socket)=&gt;&#123;</span><br><span class="line">  // put all customized events here</span><br><span class="line">&#125;)  </span><br></pre></td></tr></table></figure>
+
+<p>Adding the events of cooperative document will use,</p>
+<ul>
+<li> sheet changing </li>
+<li> sheet editing </li>
+</ul>
+<p>The sheet can be now edited while another client knowing it.</p>
+<p>Here is what “server/server.js” file will look like</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Koa = <span class="built_in">require</span>(<span class="string">&#x27;koa&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">//const config = require(&#x27;./db&#x27;) omitting the database</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>).createServer(app.callback())</span><br><span class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">&#x27;socket.io&#x27;</span>)(server)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> users = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">io.on(<span class="string">&quot;connection&quot;</span>, <span class="function">(<span class="params">socket</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;ws连接了&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    socket.on(<span class="string">&#x27;getID&#x27;</span>, <span class="function"><span class="params">name</span>=&gt;</span>&#123;</span><br><span class="line">        users.set(name, socket.id) </span><br><span class="line">        <span class="built_in">console</span>.log(users, <span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里定义socket io 实例 收到 自定义的消息时做出什么行为</span></span><br><span class="line">    socket.on(<span class="string">&#x27;skchange&#x27;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;ws表格变动&#x27;</span>, data);</span><br><span class="line">        <span class="keyword">for</span> ([username, id] <span class="keyword">of</span> users.entries())&#123;</span><br><span class="line">            <span class="keyword">if</span>(username!==data.sender)&#123;</span><br><span class="line">                io.to(id).emit(<span class="string">&#x27;sknew&#x27;</span>, data)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;ws发出&#x27;</span>);</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">&#x27;skediting&#x27;</span>, <span class="function"><span class="params">user</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(user, <span class="string">&#x27;开始编辑&#x27;</span>);</span><br><span class="line">        <span class="keyword">for</span> ([username, id] <span class="keyword">of</span> users.entries())&#123;</span><br><span class="line">            <span class="keyword">if</span>(username!==user)&#123;</span><br><span class="line">                io.to(id).emit(<span class="string">&#x27;skeditcoming&#x27;</span>, user)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 断开后根据id值删除键和值</span></span><br><span class="line">      socket.on(<span class="string">&#x27;disconnect&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;socket断开了&#x27;</span>, socket.id);</span><br><span class="line">        <span class="keyword">for</span> ([username, id] <span class="keyword">of</span> users.entries())&#123;</span><br><span class="line">            <span class="keyword">if</span>(id === socket.id)&#123;</span><br><span class="line">                users.delete(username)</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;断开后map&#x27;</span>, users);</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8080</span>, <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;http:localhost:8080&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-References"><a href="#6-References" class="headerlink" title="6. References"></a>6. References</h4><p>The react-sheet-ui with no websocket enhanced is based off Flavio Copes(<a target="_blank" rel="noopener" href="https://flaviocopes.com/">https://flaviocopes.com/</a>) React Excel tutorial.</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Peter Chen</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codhog.github.io/2021/10/01/Guide-to-socket-io/">https://codhog.github.io/2021/10/01/Guide-to-socket-io/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Peter Chen</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: null,
+        id: '2021-10-01T02-26-15',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2021/10/01/Guide-to-socket-io/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="A beginners&#39; guide of implementing co-operative editing document using React and socket.io">
+                        
+                        <span class="card-title">A beginners&#39; guide of implementing co-operative editing document using React and socket.io</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Peter Chen
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/05/02/%E5%85%B3%E4%BA%8EJS%E5%AF%B9%E8%B1%A1%E9%94%AE%E5%80%BC%E9%9A%90%E6%80%A7%E8%BD%AC%E6%8D%A2%E5%AF%BC%E8%87%B4%E7%9A%84%E5%A4%8D%E5%90%88%E6%95%B0%E7%BB%84%E6%B1%82%E9%95%BF%E5%BA%A6%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="关于JS对象键值隐性转换导致的复合数组求长度出现的问题">
+                        
+                        <span class="card-title">关于JS对象键值隐性转换导致的复合数组求长度出现的问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Peter Chen
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: Peter Chen<br />'
+            + 'Author: Peter Chen<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">Peter Chen</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Codhog" class="tooltipped" target="_blank" data-tooltip="My GitHub: Codhog" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:capetechen@163.com" class="tooltipped" target="_blank" data-tooltip="My Email: capetechen@163.com" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://blog.csdn.net/maimaddadao" class="tooltipped" target="_blank" data-tooltip="Follow me on csdn" data-position="top" data-delay="50">
+        <i class="fab fa-cuttlefish"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
