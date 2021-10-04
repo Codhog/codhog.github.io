@@ -86,11 +86,11 @@
     <ul class="sub-nav menus_item_child ">
       
       <li>
-        <a target="_blank" rel="noopener" href="https://www.baidu.com">
+        <a target="_blank" rel="noopener" href="https://cooperative-editing-sheet.herokuapp.com/">
           
           <i class="fas fa-arrow-right" style="margin-top: -20px; zoom: 0.6;"></i>
           
-          <span>Baidu</span>
+          <span>coediting sheet</span>
         </a>
       </li>
       
@@ -159,11 +159,11 @@
               
                 <li>
 
-                  <a target="_blank" rel="noopener" href="https://www.baidu.com " style="margin-left:75px">
+                  <a target="_blank" rel="noopener" href="https://cooperative-editing-sheet.herokuapp.com/ " style="margin-left:75px">
 				  
 				   <i class="fa fas fa-arrow-right" style="position: absolute;left:50px" ></i>
 			      
-		          <span>Baidu</span>
+		          <span>coediting sheet</span>
                   </a>
                 </li>
               
@@ -371,8 +371,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Javascipt-Async-await/">
-                                <span class="chip bg-color">-Javascipt -Async/await</span>
+                            <a href="/tags/ES6/">
+                                <span class="chip bg-color">ES6</span>
                             </a>
                         
                     </div>
@@ -413,10 +413,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Async-Await-and-Promise"><a href="#Async-Await-and-Promise" class="headerlink" title="Async, Await and Promise"></a>Async, Await and Promise</h1><h4 id="1-Relaition-with-Promise"><a href="#1-Relaition-with-Promise" class="headerlink" title="1. Relaition with Promise"></a>1. Relaition with Promise</h4><p>They are both Javascript’s unique way to achieve asynchronous programming,</p>
-<p>while async/await(ES7) is introdunced later than Promise(ES6),</p>
-<p>because Promise was intended to eliminate the callback hell from ajax but itself </p>
-<p>also relies on callback (chained “then”)</p>
+                <h1 id="Async-Await-and-Promise"><a href="#Async-Await-and-Promise" class="headerlink" title="Async, Await and Promise"></a>Async, Await and Promise</h1><h4 id="1-Abstraction"><a href="#1-Abstraction" class="headerlink" title="1. Abstraction"></a>1. Abstraction</h4><p>They are both JavaScript’s unique way to achieve asynchronous programming,</p>
+<p>while async/await(ES7) is introduced later than Promise(ES6),</p>
+<p>because Promise was intended to eliminate the callback hell from ajax, </p>
+<p>(callback hell =&gt; a ajax output requires a ajax input and chained together)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// chained ajax, very hard to read</span><br><span class="line">$.ajax1(&#123;</span><br><span class="line">	success:$.ajax2(&#123;</span><br><span class="line">		success: $.ajax4(&#123;&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	failure:$.ajax3()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> but promise also create a monster of its own chaining together a lots of “then()”, and is not clear on the error catching</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// chained promise, each then(), or catch(), finally() returns a promise, but easier to read than chained ajax</span><br><span class="line">myPromise</span><br><span class="line">.then(()=&gt;handleResolvedA())</span><br><span class="line">.then(()=&gt;handleResolvedB())</span><br><span class="line">.then(()=&gt;handleResolvedC())</span><br><span class="line">.catch(err =&gt; &#123; console.log(&quot;oops&quot;) &#125;);</span><br><span class="line">// output</span><br><span class="line">// Error: oops at myPromise.then.then.then.then.then (index.js:8:13)</span><br></pre></td></tr></table></figure>
+
+<p>So the Async/await decorators was introduced later to offer easier way to do the same thing</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async function myPromise()&#123;</span><br><span class="line">	let result;</span><br><span class="line">	try&#123;</span><br><span class="line">		result = await handleResolvedA()</span><br><span class="line">	&#125;</span><br><span class="line">	catch(err)&#123;</span><br><span class="line">		console.log(&quot;oops&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">// output</span><br><span class="line">// Error: oops at myPromise</span><br></pre></td></tr></table></figure>
+
+
+
 
                 
             </div>
@@ -481,8 +491,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Javascipt-Async-await/">
-                                    <span class="chip bg-color">-Javascipt -Async/await</span>
+                                <a href="/tags/ES6/">
+                                    <span class="chip bg-color">ES6</span>
                                 </a>
                             
                         </div>
@@ -591,8 +601,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Javascipt-Async-await/">
-                        <span class="chip bg-color">-Javascipt -Async/await</span>
+                    <a href="/tags/ES6/">
+                        <span class="chip bg-color">ES6</span>
                     </a>
                     
                 </div>
@@ -632,6 +642,22 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Tutorial/">
+                        <span class="chip bg-color">Tutorial</span>
+                    </a>
+                    
+                    <a href="/tags/React-js/">
+                        <span class="chip bg-color">React.js</span>
+                    </a>
+                    
+                    <a href="/tags/Node-js/">
+                        <span class="chip bg-color">Node.js</span>
+                    </a>
+                    
                 </div>
                 
             </div>
