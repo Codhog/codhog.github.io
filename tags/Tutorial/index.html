@@ -13,6 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
@@ -57,7 +58,7 @@
       
       <i class="fas fa-home" style="zoom: 0.6;"></i>
       
-      <span>Index</span>
+      <span>Home</span>
     </a>
     
   </li>
@@ -68,7 +69,7 @@
       
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
-      <span>About</span>
+      <span>Hire me</span>
     </a>
     
   </li>
@@ -120,8 +121,6 @@
         </div>
     </div>
 
-    
-
     <ul class="menu-list mobile-menu-list">
         
         <li class="m-nav-item">
@@ -130,7 +129,7 @@
 			
 			    <i class="fa-fw fas fa-home"></i>
 			
-			Index
+			Home
 		</a>
           
         </li>
@@ -141,7 +140,7 @@
 			
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
-			About
+			Hire me
 		</a>
           
         </li>
@@ -334,19 +333,10 @@
                 </a>
                 
                 
-                <a href="/tags/ES6/" title="ES6: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ES6" style="background-color: #E8F8F5;">ES6
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/my-CSDN-blog/" title="my CSDN blog: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="my CSDN blog" style="background-color: #FEF9E7;">my CSDN blog
+                            data-tagname="my CSDN blog" style="background-color: #E8F8F5;">my CSDN blog
                         <span class="tag-length">4</span>
                     </span>
                 </a>
@@ -355,7 +345,7 @@
                 <a href="/tags/tutorial/" title="tutorial: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            data-tagname="tutorial" style="background-color: #F8F9F9;">tutorial
+                            data-tagname="tutorial" style="background-color: #FEF9E7;">tutorial
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -364,7 +354,7 @@
                 <a href="/tags/disscussion/" title="disscussion: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="disscussion" style="background-color: #82E0AA;">disscussion
+                            data-tagname="disscussion" style="background-color: #F8F9F9;">disscussion
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -449,13 +439,8 @@
          style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
-            <!-- 
-                <span id="year">2019-2021</span>
-             -->
-            <span id="year">2020</span>&nbsp;-
-            <span id="year">2021</span>
+                <span id="year">2020-2021</span>
             <a href="/about" target="_blank">Peter Chen</a>
-
             <br>
             
             
@@ -464,13 +449,13 @@
             
             
                 <span id="busuanzi_container_site_pv">
-                <i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                &nbsp;&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
                     <span id="busuanzi_value_site_pv" class="white-color"></span>
             </span>
             
             
                 <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
                     <span id="busuanzi_value_site_uv" class="white-color"></span>
             </span>
             
@@ -482,23 +467,32 @@
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/Codhog" class="tooltipped" target="_blank" data-tooltip="My GitHub: Codhog" data-position="top" data-delay="50">
+    <a href="https://github.com/Codhog" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
 
 
-    <a href="mailto:capetechen@163.com" class="tooltipped" target="_blank" data-tooltip="My Email: capetechen@163.com" data-position="top" data-delay="50">
+    <a href="mailto:capetechen@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
-
-
 
 
 
     <a href="https://blog.csdn.net/maimaddadao" class="tooltipped" target="_blank" data-tooltip="Follow me on csdn" data-position="top" data-delay="50">
         <i class="fab fa-cuttlefish"></i>
     </a>
+
+
+
+    <a href="/medias/me.jpg" class="tooltipped" target="_blank" data-tooltip="Hire me" data-position="top" data-delay="50">
+        <i class="fas fa-file-pdf">
+<!--            {% raw %}-->
+<!--            <button >Download</button>-->
+<!--            {% endraw %}-->
+        </i>
+    </a>
+
 
 
 
@@ -639,20 +633,6 @@ $(function () {
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
     
     
