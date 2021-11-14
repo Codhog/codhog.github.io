@@ -2,6 +2,8 @@
 title: Nginx 部署 Django Python虚拟环境创建 傻瓜教程
 date: 2021-03-21 08:29:03
 tags:
+    - my CSDN blog
+    - tutorial
 ---
 #
 
