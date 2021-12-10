@@ -387,9 +387,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Personal-Notes/">
+                                <span class="chip bg-color">Personal Notes</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -422,7 +426,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Async-Await-and-Promise"><a href="#Async-Await-and-Promise" class="headerlink" title="Async, Await and Promise"></a>Async, Await and Promise</h1><h4 id="1-Abstraction"><a href="#1-Abstraction" class="headerlink" title="1. Abstraction"></a>1. Abstraction</h4><p>They are both JavaScript’s unique way to achieve asynchronous programming,</p>
+                <h1 id="Async-Await-and-Promise-Notes"><a href="#Async-Await-and-Promise-Notes" class="headerlink" title="Async, Await and Promise Notes"></a>Async, Await and Promise Notes</h1><h4 id="Advantage-of-Async-over-Promise"><a href="#Advantage-of-Async-over-Promise" class="headerlink" title="Advantage of Async over Promise"></a>Advantage of Async over Promise</h4><p>They are both JavaScript’s unique way to achieve asynchronous programming,</p>
 <p>while async/await(ES7) is introduced later than Promise(ES6),</p>
 <p>because Promise was intended to eliminate the callback hell from ajax, </p>
 <p>(callback hell =&gt; a ajax output requires a ajax input and chained together)</p>
@@ -434,7 +438,9 @@
 <p>So the Async/await decorators was introduced later to offer easier way to do the same thing</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async function myPromise()&#123;</span><br><span class="line">	let result;</span><br><span class="line">	try&#123;</span><br><span class="line">		result = await handleResolvedA()</span><br><span class="line">	&#125;</span><br><span class="line">	catch(err)&#123;</span><br><span class="line">		console.log(&quot;oops&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">// output</span><br><span class="line">// Error: oops at myPromise</span><br></pre></td></tr></table></figure>
 
-
+<h4 id="To-Sum-Up"><a href="#To-Sum-Up" class="headerlink" title="To Sum Up"></a>To Sum Up</h4><p>Async syntactic sugar provide a nice, simplified alternate way to handle asynchronous request that is simpler to read and maintain, over using Promise.</p>
+<p>Last but not least, you can even add async in front of class/object methods to make them return promises, and await promises inside them.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">first, last, age, gender, interests</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = &#123;</span><br><span class="line">      first,</span><br><span class="line">      last</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">    <span class="built_in">this</span>.interests = interests;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">greeting</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">`Hi! I&#x27;m <span class="subst">$&#123;<span class="built_in">this</span>.name.first&#125;</span>`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">farewell</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name.first&#125;</span> has left the building. Bye for now!`</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> han = <span class="keyword">new</span> Person(<span class="string">&#x27;Han&#x27;</span>, <span class="string">&#x27;Solo&#x27;</span>, <span class="number">25</span>, <span class="string">&#x27;male&#x27;</span>, [<span class="string">&#x27;Smuggling&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
 
                 
@@ -449,7 +455,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/Personal-Notes/">
+                                    <span class="chip bg-color">Personal Notes</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -526,6 +536,14 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Personal-Notes/">
+                        <span class="chip bg-color">Personal Notes</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
