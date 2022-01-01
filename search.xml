@@ -4,6 +4,48 @@
   
     
     <entry>
+      <title>Leetcode in JS (updating in 2022)</title>
+      <link href="/2021/12/30/Leetcode%20Excel/"/>
+      <url>/2021/12/30/Leetcode%20Excel/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-Excel"><a href="#Leetcode-Excel" class="headerlink" title="Leetcode Excel"></a>Leetcode Excel</h1><p>Faster updates on <a href="https://github.com/Codhog/leetcode_javascript">https://github.com/Codhog/leetcode_javascript</a></p><ol><li><table><thead><tr><th>类型</th><th>题名</th><th align="left">题目窍门</th><th>R</th></tr></thead><tbody><tr><td>BFS</td><td>二维矩阵\</td><td align="left">保持一个FIFO的queue  在queue loop内第一句更新选中节点(第一个.shift)，</td><td>Y</td></tr><tr><td></td><td>/最短路径</td><td align="left">步骤 1. 在queue内循环到空 2. 确定</td><td></td></tr><tr><td></td><td></td><td align="left"></td><td></td></tr><tr><td>字符串</td><td>最长前缀</td><td align="left"></td><td></td></tr><tr><td></td><td></td><td align="left"></td><td></td></tr><tr><td></td><td></td><td align="left"></td><td></td></tr></tbody></table></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> algorithm </tag>
+            
+            <tag> Leetcode in JS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BFS and DFS</title>
+      <link href="/2021/12/25/Breadth%20First%20Search%20and%20how%20to%20apply%20it%20in%20Javascript/"/>
+      <url>/2021/12/25/Breadth%20First%20Search%20and%20how%20to%20apply%20it%20in%20Javascript/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Breadth-First-Search-and-how-to-apply-it-in-Javascript"><a href="#Breadth-First-Search-and-how-to-apply-it-in-Javascript" class="headerlink" title="Breadth First Search and how to apply it in Javascript"></a>Breadth First Search and how to apply it in Javascript</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>BFS focusing on exhausting all options at current level/depth, thus is good for maze.</p><p>DFS focusing on using recursion to reach to the end of options, track it and go back to origin and repeat.</p><p>BFS uses a queue while BFS uses a stack.  </p><p>So we can either use native JS <strong>array</strong> or write our own queue and stack</p><h2 id="2-Similar-Approach-of-BFS"><a href="#2-Similar-Approach-of-BFS" class="headerlink" title="2. Similar Approach of BFS"></a>2. Similar Approach of BFS</h2><p>The classic BFS approach for a binary tree is to use a <strong>queue</strong> and push each queue entry’s children onto the end of the queue. </p><p>This way, the queue will run to the end of the row/level before moving onto the next level.</p><p>The steps should be</p><ol><li> while loop for incrementing depth when inner loop end</li><li>Inner loop, looping through the current Node in queue.</li><li>We will Do FIFO and pop the first Node, and immediately add, verify potential feasible child Nodes to end</li><li>Marked the new visited Node as visited ( Usually use a new array to store, but you can do it in-place)</li><li>End the Inner Loop</li><li>Increment Depth</li></ol><p>Confused? I will explain the step 3 more before I show you the code.</p><h2 id="3-What-are-we-doing-in-step-3"><a href="#3-What-are-we-doing-in-step-3" class="headerlink" title="3.  What are we doing in step 3?"></a>3.  What are we doing in step 3?</h2><p>We are trying to go through every feasible options(Nodes),</p><p>by adding every possible options on to end of Array,</p><p>Starting with a root, and go to its children, and its grand children.</p><p>Pop the first one and then verified, so eventually no element can be in queue.</p><p>And we can store a “depth” variable to keep track the change of queue.</p><h2 id="4-Examples"><a href="#4-Examples" class="headerlink" title="4.Examples"></a>4.Examples</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> algorithm </tag>
+            
+            <tag> Leetcode in JS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Binary search explain in Javascript</title>
       <link href="/2021/12/11/Binary%20Search/"/>
       <url>/2021/12/11/Binary%20Search/</url>
@@ -17,8 +59,6 @@
             <tag> algorithm </tag>
             
             <tag> Leetcode in JS </tag>
-            
-            <tag> Binary search explain in Javascript </tag>
             
         </tags>
       
