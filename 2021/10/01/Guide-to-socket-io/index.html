@@ -487,9 +487,9 @@
 
 <p>with the server code (shown above)</p>
 <p>we shall have the app working like this</p>
-<p><img src="/.io//2.gif" alt="1"></p>
+<p><img src="/.io//10/01/Guide-to-socket-io/2.gif" alt="1"></p>
 <p>Now we have the real-time text, let’s make others know who is editing.</p>
-<p><img src="/.io//3.gif" alt="3"></p>
+<p><img src="/.io//10/01/Guide-to-socket-io/3.gif" alt="3"></p>
 <p>To do that, we need to send out socket signals of “Start Editing” and “End Editing” at “double-clicked” “onBlur” respectively.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">doubleClicked = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Prevent click and double click to conflict</span></span><br><span class="line">  <span class="built_in">clearTimeout</span>(<span class="built_in">this</span>.timer);</span><br><span class="line">  <span class="built_in">this</span>.prevent = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">this</span>.emitUnselectAllEvent();</span><br><span class="line">  <span class="built_in">this</span>.setState(&#123; <span class="attr">editing</span>: <span class="literal">true</span>, <span class="attr">selected</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">  <span class="comment">// Unselect all the otfher cells and set the current</span></span><br><span class="line">  <span class="comment">// Cell state to `selected` &amp; `editing`</span></span><br><span class="line">  <span class="comment">// 双击格子后 发送信号</span></span><br><span class="line">  socket.emit(<span class="string">&#x27;skediting&#x27;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;dataName&#x27;</span>: <span class="built_in">this</span>.props.displayName,</span><br><span class="line">    <span class="string">&#x27;dataCoor&#x27;</span>: [<span class="built_in">this</span>.props.x, <span class="built_in">this</span>.props.y]</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -506,7 +506,7 @@
 
 <p><strong>SUM UP</strong>:  Every event we register will have two different names come back and forth,</p>
 <p>If we emit “newmessage” to server, after server received it, it need another name to send to client “newMessageComing”</p>
-<p><img src="/.io//4.png"></p>
+<p><img src="/.io//10/01/Guide-to-socket-io/4.png"></p>
 <h4 id="5-Transmitting-data-through-Socket-io"><a href="#5-Transmitting-data-through-Socket-io" class="headerlink" title="5. Transmitting data through Socket.io"></a>5. Transmitting data through Socket.io</h4><p>The server side is simplified to demonstrate how socket.io works with http server and client-UI with no touch on database.</p>
 <p>First, we create the instance of websocket using Koa.  </p>
 <p>Note that Koa requires app.callback() as parameter</p>
@@ -720,8 +720,6 @@
 
 <!-- 代码语言 -->
 
-<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
-
 
 <!-- 代码块复制 -->
 
@@ -729,8 +727,6 @@
 
 
 <!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

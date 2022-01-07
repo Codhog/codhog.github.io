@@ -430,20 +430,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Breadth-First-Search-and-how-to-apply-it-in-Javascript"><a href="#Breadth-First-Search-and-how-to-apply-it-in-Javascript" class="headerlink" title="Breadth First Search and how to apply it in Javascript"></a>Breadth First Search and how to apply it in Javascript</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>BFS focusing on exhausting all options at current level/depth, thus is good for maze.</p>
+                <h1 id="Breadth-First-Search-and-how-to-apply-it-on-Javascript-DOM"><a href="#Breadth-First-Search-and-how-to-apply-it-on-Javascript-DOM" class="headerlink" title="Breadth First Search and how to apply it on Javascript DOM"></a>Breadth First Search and how to apply it on Javascript DOM</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>BFS focusing on exhausting all options at current level/depth, thus is good for maze.</p>
 <p>DFS focusing on using recursion to reach to the end of options, track it and go back to origin and repeat.</p>
-<p>BFS uses a queue while BFS uses a stack.  </p>
+<p>BFS uses a queue while BFS uses a stack.</p>
 <p>So we can either use native JS <strong>array</strong> or write our own queue and stack</p>
-<h2 id="2-Similar-Approach-of-BFS"><a href="#2-Similar-Approach-of-BFS" class="headerlink" title="2. Similar Approach of BFS"></a>2. Similar Approach of BFS</h2><p>The classic BFS approach for a binary tree is to use a <strong>queue</strong> and push each queue entry’s children onto the end of the queue. </p>
+<h2 id="2-Similar-Approach-of-BFS"><a href="#2-Similar-Approach-of-BFS" class="headerlink" title="2. Similar Approach of BFS"></a>2. Similar Approach of BFS</h2><p>The classic BFS approach for a binary tree is to use a <strong>queue</strong> and push each queue entry’s children onto the end of the queue.</p>
 <p>This way, the queue will run to the end of the row/level before moving onto the next level.</p>
 <p>The steps should be</p>
 <ol>
 <li> while loop for incrementing depth when inner loop end</li>
-<li>Inner loop, looping through the current Node in queue.</li>
-<li>We will Do FIFO and pop the first Node, and immediately add, verify potential feasible child Nodes to end</li>
-<li>Marked the new visited Node as visited ( Usually use a new array to store, but you can do it in-place)</li>
-<li>End the Inner Loop</li>
-<li>Increment Depth</li>
+<li> Inner loop, looping through the current Node in queue.</li>
+<li> We will Do FIFO and pop the first Node, and immediately add, verify potential feasible child Nodes to end</li>
+<li> Marked the new visited Node as visited ( Usually use a new array to store, but you can do it in-place)</li>
+<li> End the Inner Loop</li>
+<li> Increment Depth</li>
 </ol>
 <p>Confused? I will explain the step 3 more before I show you the code.</p>
 <h2 id="3-What-are-we-doing-in-step-3"><a href="#3-What-are-we-doing-in-step-3" class="headerlink" title="3.  What are we doing in step 3?"></a>3.  What are we doing in step 3?</h2><p>We are trying to go through every feasible options(Nodes),</p>
@@ -451,7 +451,11 @@
 <p>Starting with a root, and go to its children, and its grand children.</p>
 <p>Pop the first one and then verified, so eventually no element can be in queue.</p>
 <p>And we can store a “depth” variable to keep track the change of queue.</p>
-<h2 id="4-Examples"><a href="#4-Examples" class="headerlink" title="4.Examples"></a>4.Examples</h2>
+<h2 id="4-Examples"><a href="#4-Examples" class="headerlink" title="4.Examples"></a>4.Examples</h2><p>Given a DOM tree, flatten it into an one dimensional array, in the order of layer by layer, like below.</p>
+<p><img src="/.io//bfs.png" alt="1"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function flatten(root) &#123;</span><br><span class="line">  // your code here</span><br><span class="line">  if(!root) return []</span><br><span class="line">  const queue = [root] // Step 1 We start with the root node</span><br><span class="line">  const res = []  // In this case we want to store the result array, could be depth</span><br><span class="line">  while(queue.length)&#123;</span><br><span class="line">    const node = queue.shift()  // We pop the top element</span><br><span class="line">    node &amp;&amp; queue.push(...node.children)  // and push its children</span><br><span class="line">    res.push(node)		// store the result</span><br><span class="line">  &#125;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
                 
             </div>
             <hr/>
@@ -624,8 +628,6 @@
 
 <!-- 代码语言 -->
 
-<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
-
 
 <!-- 代码块复制 -->
 
@@ -633,8 +635,6 @@
 
 
 <!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>
