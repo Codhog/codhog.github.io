@@ -5,7 +5,7 @@ node_js:
 cache: yarn
 branches:
   only:
-    - main # build master branch only
+    - gh-pages # build master branch only
 script:
   - hexo generate # generate static files
   # 注意这个main
@@ -15,5 +15,5 @@ deploy:
   github-token: $GH_TOKEN
   keep-history: true
   on:
-    branch: main
+    branch: gh-pages
   local-dir: public
